@@ -12,15 +12,15 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """
-
-        :param args:
-        :param kwargs:
+        initialisation de la fonction init
+        :param args: not used
+        :param kwargs:used
         """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = self.created_at
         isoformat = "%Y-%m-%dT%H:%M:%S.%f"
-        if kwargs is None:
+        if kwargs:
             for key, value in kwargs.items():
                 if (key == "created_at") or (key == "updated_at"):
                     self.__dict__[key] = datetime.strptime(value, isoformat)
