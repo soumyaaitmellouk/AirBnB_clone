@@ -27,12 +27,12 @@ class BaseModel:
                 else:
                     self.__dict__[key] = value
         else:
-            pass
-
+            models.storage.new(self)
     def save(self):
         """updates the public instance attribute updated_at
         with the current datetime"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def __str__(self):
         """should print: [<class name>](<self.id>) <self.__dict__>"""
