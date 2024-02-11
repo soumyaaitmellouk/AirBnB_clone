@@ -34,17 +34,17 @@ class BaseModel:
         self.updated_at = datetime.now()
         models.storage.save()
 
-    def __str__(self):
-        """should print: [<class name>](<self.id>) <self.__dict__>"""
-        name = self.__class__.__name__
-        return "[{}] ({}) {}".format(name, self.id, self.__dict__)
-
     def to_dict(self):
         """ returns a dictionary containing all keys/values
          of __dict__ of the instance"""
         new_dic = self.__dict__.copy()
-        new_dic["__class__"] = self.__class__.__name__
         new_dic["created_at"] = self.created_at.isoformat()
         new_dic["updated_at"] = self.updated_at.isoformat()
+        new_dic["__class__"] = self.__class__.__name__
 
         return new_dic
+
+    def __str__(self):
+        """should print: [<class name>](<self.id>) <self.__dict__>"""
+        name = self.__class__.__name__
+        return "[{}] ({}) {}".format(name, self.id, self.__dict__)
