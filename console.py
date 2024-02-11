@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Defines the HBnB console."""
 import cmd
+import re
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -9,14 +11,18 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
 
-    def do_quit(self, arg):
+    def do_quit(self, line):
         """ exit the program."""
         return True
 
     def do_EOF(self, line):
         """Exit the console """
-        print()
+        print("")
         return True
+
+    def emptyline(self):
+        """Do nothing upon receiving an empty line."""
+        pass
 
 
 if __name__ == '__main__':
